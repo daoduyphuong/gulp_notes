@@ -19,7 +19,7 @@ npm install gulp --save-dev
 *.+(scss|sass)   // Match any file have ext .scss or sass
 ```
 
-## Working with multiple sources in one task
+## Working with multiple stream in one task
 First, install merge-stream
 ```
 npm install --save-dev merge-stream
@@ -37,5 +37,17 @@ gulp.task('test', function() {
     .pipe(gulp.dest('public/jquery'));
 
   return merge(bootstrap, jquery);
+});
+```
+
+## Working with multiple source in one task
+Just use array path in gulp.source.
+For example:
+```
+// clean task
+var clean = require("gulp-clean");
+gulp.task('clean', function () {
+    return gulp.src([`${dirs.dist}`, `${dirs.tmp}`], {read: false})
+        .pipe(clean());
 });
 ```
